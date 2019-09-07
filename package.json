@@ -8,13 +8,11 @@
   },
   "dependencies": {
     "react": "16.8.3",
-    "react-native": "0.59.9",
-    "react-native-gesture-handler": "^1.4.1",
-    "react-navigation": "^4.0.0"
+    "react-native": "0.59.9"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/runtime": "^7.5.5",
+    "@babel/core": "^7.6.0",
+    "@babel/runtime": "^7.6.0",
     "babel-jest": "^24.9.0",
     "eslint": "^6.3.0",
     "eslint-plugin-react": "^7.14.3",
