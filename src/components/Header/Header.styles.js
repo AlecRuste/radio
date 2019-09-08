@@ -5,10 +5,19 @@ export default StyleSheet.create({
         width: '100%',
         height: '10%',
         backgroundColor: '#edae61',
-        justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        paddingLeft: 10,
+        paddingRight: 10
     },
     headerText: {
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        fontSize: 20
+    },
+    headerImg: {
+        width: 25,
+        height: 25,
+        resizeMode: 'contain'
     }
 });
