@@ -7,7 +7,9 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
+import styles from './src/styles';
+import Header from './src/components/Header';
 
 // const instructions = Platform.select({
 //     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -54,10 +56,11 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 //     },
 // });
 
-export default class HelloWorldApp extends Component {
+export default class App extends Component {
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={styles.main}>
+                <Header />
                 <Text>
 Hello, world!
                 </Text>
