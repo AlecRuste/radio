@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, SafeAreaView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './Header.styles';
 
 const Header = () => (

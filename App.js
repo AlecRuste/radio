@@ -57,7 +57,28 @@ import Header from './src/components/Header';
 // });
 
 export default class App extends Component {
+    state = {
+        radioLithuania: []
+    }
+
+    componentDidMount() {
+        this.getMovies();
+    }
+
+    async getMovies() {
+        try {
+            const radioLithuania = await fetch('http://www.radio-browser.info/webservice/json/stations/bycountry/lithuania');
+            const responseRadioLithuania = await radioLithuania.json();
+            this.setState({
+                radioLithuania: responseRadioLithuania
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     render() {
+        console.log(this.state.radioLithuania);
         return (
             <View style={styles.main}>
                 <Header />
