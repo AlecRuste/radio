@@ -4,7 +4,7 @@ import styles from './Header.styles';
 
 const Header = () => (
     <View style={styles.main}>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.headerButton}>
             <Image
                 source={require('./../../assets/back-arrow.png')}
                 style={styles.headerImg}
@@ -13,7 +13,7 @@ const Header = () => (
         <Text style={styles.headerText}>
 Stations
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.headerButton}>
             <Image
                 source={require('./../../assets/switch.png')}
                 style={styles.headerImg}
