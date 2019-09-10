@@ -23,4 +23,16 @@ export default StyleSheet.create({
         margin: 10,
         marginRight: 15
     },
+    radioStationDetails: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
+    radioStationLogo: {
+        borderRadius: 60,
+        width: 125,
+        height: 125,
+        borderWidth: 3,
+        borderColor: '#a2abbd'
+    }
 });

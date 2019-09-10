@@ -17,7 +17,7 @@ export default class App extends Component {
         radioStationList: [],
         isLoading: true,
         radioStationActive: false,
-        selectedRadioStation: ''
+        selectedRadioStation: null
     }
 
     componentDidMount() {
@@ -73,23 +73,32 @@ FM
                                             {item.votes[0]}
                                         </Text>
                                     </View>
-                                    {item.favicon === '' ? (
-                                        <Image
-                                            style={{ width: 50, height: 50 }}
-                                            source={require('./src/assets/radioFallBackImage.jpg')}
-                                        />
-                                    ) : (
-                                        <Image
-                                            style={{ width: 50, height: 50 }}
-                                            source={{ uri: `${item.favicon}` }}
-                                        />
-                                    )}
                                     {radioStationActive && (
-                                        <Text>
-                                            {' '}
-Test
-                                            {' '}
-                                        </Text>
+                                        <View style={styles.radioStationDetails}>
+                                            <TouchableOpacity>
+                                                <Image
+                                                    style={{ width: 35, height: 35 }}
+                                                    source={require('./src/assets/minus.png')}
+                                                />
+                                            </TouchableOpacity>
+                                            {item.favicon === '' ? (
+                                                <Image
+                                                    style={styles.radioStationLogo}
+                                                    source={require('./src/assets/radioFallBackImage.jpg')}
+                                                />
+                                            ) : (
+                                                <Image
+                                                    style={styles.radioStationLogo}
+                                                    source={{ uri: `${item.favicon}` }}
+                                                />
+                                            )}
+                                            <TouchableOpacity>
+                                                <Image
+                                                    style={{ width: 35, height: 35 }}
+                                                    source={require('./src/assets/plus.png')}
+                                                />
+                                            </TouchableOpacity>
+                                        </View>
                                     ) }
                                 </TouchableOpacity>
                             </View>
