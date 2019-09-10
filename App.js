@@ -38,7 +38,7 @@ export default class App extends Component {
     handleRadioStation = (item) => {
         const { radioStationList } = this.state;
         const selectedRadioStation = radioStationList.filter(radioStation => radioStation === item);
-        console.log(selectedRadioStation[0].name);
+        console.log(selectedRadioStation);
     }
 
     render() {
@@ -53,9 +53,18 @@ export default class App extends Component {
                         renderItem={({ item }) => (
                             <View>
                                 <TouchableOpacity onPress={() => this.handleRadioStation(item)}>
-                                    <View>
+                                    <View style={styles.radioStationList}>
                                         <Text style={styles.radioStationName} numberOfLines={1}>
                                             {item.name}
+                                            {' '}
+FM
+                                        </Text>
+                                        <Text style={styles.radioStationFrequency} numberOfLines={1}>
+
+                                            {item.votes}
+,
+                                            {' '}
+                                            {item.votes[0]}
                                         </Text>
                                     </View>
                                 </TouchableOpacity>
