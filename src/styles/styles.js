@@ -8,6 +8,7 @@ export default StyleSheet.create({
     radioStationName: {
         fontSize: 24,
         color: '#a2abbd',
-        margin: 10
+        margin: 10,
+        width: 200
     },
 });

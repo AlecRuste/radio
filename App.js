@@ -36,11 +36,14 @@ export default class App extends Component {
     }
 
     handleRadioStation = () => {
-
+        this.setState({
+            radioStationActive: true
+        });
     }
 
     render() {
-        const { radioStationList, isLoading } = this.state;
+        const { radioStationList, isLoading, radioStationActive } = this.state;
+        console.log(radioStationActive);
         return (
             <View style={styles.main}>
                 <Header />
@@ -51,8 +54,8 @@ export default class App extends Component {
                         renderItem={({ item }) => (
                             <View>
                                 {console.log(item)}
-                                <TouchableOpacity>
-                                    <Text style={styles.radioStationName}>
+                                <TouchableOpacity onPress={this.handleRadioStation()}>
+                                    <Text style={styles.radioStationName} numberOfLines={1}>
                                         {item.name}
                                     </Text>
                                 </TouchableOpacity>
@@ -63,7 +66,6 @@ export default class App extends Component {
                 ) : (
                     null
                 )}
-
             </View>
         );
     }
