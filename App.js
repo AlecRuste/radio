@@ -7,58 +7,15 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, Text, View } from 'react-native';
+import { Platform, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import styles from './src/styles';
 import Header from './src/components/Header';
 
-// const instructions = Platform.select({
-//     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-//     android:
-//     'Double tap R on your keyboard to reload,\n'
-//     + 'Shake or press menu button for dev menu',
-// });
-
-// type Props = {};
-// export default class App extends Component<Props> {
-//     render() {
-//         return (
-//             <View style={styles.container}>
-//                 <Text style={styles.welcome}>
-// Welcome to React Native!
-//                 </Text>
-//                 <Text style={styles.instructions}>
-// To get started, edit App.js
-//                 </Text>
-//                 <Text style={styles.instructions}>
-//                     {instructions}
-//                 </Text>
-//             </View>
-//         );
-//     }
-// }
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         backgroundColor: '#F5FCFF',
-//     },
-//     welcome: {
-//         fontSize: 20,
-//         textAlign: 'center',
-//         margin: 10,
-//     },
-//     instructions: {
-//         textAlign: 'center',
-//         color: '#333333',
-//         marginBottom: 5,
-//     },
-// });
-
 export default class App extends Component {
     state = {
-        radioLithuania: []
+        radioStationList: [],
+        isLoading: true,
+        radioStationActive: false
     }
 
     componentDidMount() {
@@ -67,24 +24,46 @@ export default class App extends Component {
 
     async getMovies() {
         try {
-            const radioLithuania = await fetch('http://www.radio-browser.info/webservice/json/stations/bycountry/lithuania');
-            const responseRadioLithuania = await radioLithuania.json();
+            const radioStationData = await fetch('http://www.radio-browser.info/webservice/json/stations/bycodec/mp3?limit=20');
+            const responseRadioStationList = await radioStationData.json();
             this.setState({
-                radioLithuania: responseRadioLithuania
+                radioStationList: responseRadioStationList,
+                isLoading: false
             });
         } catch (error) {
             console.error(error);
         }
     }
 
+    handleRadioStation = () => {
+
+    }
+
     render() {
-        console.log(this.state.radioLithuania);
+        const { radioStationList, isLoading } = this.state;
         return (
             <View style={styles.main}>
                 <Header />
-                <Text>
-Hello, world!
-                </Text>
+                {!isLoading ? (
+                    <FlatList
+                        data={radioStationList}
+                        showsVerticalScrollIndicator={false}
+                        renderItem={({ item }) => (
+                            <View>
+                                {console.log(item)}
+                                <TouchableOpacity>
+                                    <Text style={styles.radioStationName}>
+                                        {item.name}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        )}
+                        keyExtractor={item => item.id}
+                    />
+                ) : (
+                    null
+                )}
+
             </View>
         );
     }
