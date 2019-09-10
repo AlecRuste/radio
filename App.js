@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import { Platform, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import styles from './src/styles';
 import Header from './src/components/Header';
+import Acitvity from './src/components/Activity';
 
 export default class App extends Component {
     state = {
@@ -24,7 +25,7 @@ export default class App extends Component {
 
     async getMovies() {
         try {
-            const radioStationData = await fetch('http://www.radio-browser.info/webservice/json/stations/bycodec/mp3?limit=20');
+            const radioStationData = await fetch('http://www.radio-browser.info/webservice/json/stations/bycodec/mp3?limit=1000');
             const responseRadioStationList = await radioStationData.json();
             this.setState({
                 radioStationList: responseRadioStationList,
@@ -73,7 +74,7 @@ FM
                         keyExtractor={item => item.id}
                     />
                 ) : (
-                    null
+                    <Acitvity />
                 )}
             </View>
         );
