@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { Platform, Text, View, TouchableOpacity, FlatList, Image } from 'react-native';
 import styles from './src/styles';
 import Header from './src/components/Header';
 import Acitvity from './src/components/Activity';
@@ -16,7 +16,8 @@ export default class App extends Component {
     state = {
         radioStationList: [],
         isLoading: true,
-        radioStationActive: false
+        radioStationActive: false,
+        selectedRadioStation: ''
     }
 
     componentDidMount() {
@@ -37,13 +38,17 @@ export default class App extends Component {
     }
 
     handleRadioStation = (item) => {
-        const { radioStationList } = this.state;
-        const selectedRadioStation = radioStationList.filter(radioStation => radioStation === item);
-        console.log(selectedRadioStation);
+        const { radioStationList, selectedRadioStation } = this.state;
+        const filteredRadioStation = radioStationList.filter(radioStation => radioStation === item);
+        this.setState({
+            selectedRadioStation: filteredRadioStation,
+            radioStationActive: true
+        });
     }
 
     render() {
-        const { radioStationList, isLoading, radioStationActive } = this.state;
+        const { radioStationList, isLoading, radioStationActive, selectedRadioStation } = this.state;
+        console.log(selectedRadioStation);
         return (
             <View style={styles.main}>
                 <Header />
@@ -68,6 +73,24 @@ FM
                                             {item.votes[0]}
                                         </Text>
                                     </View>
+                                    {item.favicon === '' ? (
+                                        <Image
+                                            style={{ width: 50, height: 50 }}
+                                            source={require('./src/assets/radioFallBackImage.jpg')}
+                                        />
+                                    ) : (
+                                        <Image
+                                            style={{ width: 50, height: 50 }}
+                                            source={{ uri: `${item.favicon}` }}
+                                        />
+                                    )}
+                                    {radioStationActive && (
+                                        <Text>
+                                            {' '}
+Test
+                                            {' '}
+                                        </Text>
+                                    ) }
                                 </TouchableOpacity>
                             </View>
                         )}
