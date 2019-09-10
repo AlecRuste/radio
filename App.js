@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { Platform, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import styles from './src/styles';
 import Header from './src/components/Header';
 
@@ -35,15 +35,14 @@ export default class App extends Component {
         }
     }
 
-    handleRadioStation = () => {
-        this.setState({
-            radioStationActive: true
-        });
+    handleRadioStation = (item) => {
+        const { radioStationList } = this.state;
+        const selectedRadioStation = radioStationList.filter(radioStation => radioStation === item);
+        console.log(selectedRadioStation[0].name);
     }
 
     render() {
         const { radioStationList, isLoading, radioStationActive } = this.state;
-        console.log(radioStationActive);
         return (
             <View style={styles.main}>
                 <Header />
@@ -53,11 +52,12 @@ export default class App extends Component {
                         showsVerticalScrollIndicator={false}
                         renderItem={({ item }) => (
                             <View>
-                                {console.log(item)}
-                                <TouchableOpacity onPress={this.handleRadioStation()}>
-                                    <Text style={styles.radioStationName} numberOfLines={1}>
-                                        {item.name}
-                                    </Text>
+                                <TouchableOpacity onPress={() => this.handleRadioStation(item)}>
+                                    <View>
+                                        <Text style={styles.radioStationName} numberOfLines={1}>
+                                            {item.name}
+                                        </Text>
+                                    </View>
                                 </TouchableOpacity>
                             </View>
                         )}
