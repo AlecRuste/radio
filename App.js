@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView, Button } from 'react-native';
+import Video from 'react-native-video';
 import styles from './src/styles';
 import Header from './src/components/Header';
 import Footer from './src/components/Footer';
@@ -19,7 +20,7 @@ export default class App extends Component {
 
     async getMovies() {
         try {
-            const radioStationData = await fetch('http://www.radio-browser.info/webservice/json/stations/bycodec/mp3?limit=15');
+            const radioStationData = await fetch('http://www.radio-browser.info/webservice/json/stations/bycountryexact/lithuania?limit=15');
             const responseRadioStationList = await radioStationData.json();
             this.setState({
                 radioStationList: responseRadioStationList,
@@ -31,17 +32,16 @@ export default class App extends Component {
     }
 
     handleRadioStation = (item) => {
-        const { radioStationList, selectedRadioStation } = this.state;
+        const { radioStationList } = this.state;
         const filteredRadioStation = radioStationList.filter(radioStation => radioStation === item);
         this.setState({
             radioStationActive: true,
             selectedRadioStation: filteredRadioStation
         });
-        return (
-            <View style={{ top: 0, position: 'absolute' }}>
-Test
-            </View>
-        );
+    }
+
+    playTrack = () => {
+
     }
 
     render() {
@@ -59,11 +59,8 @@ Test
                                     <View style={styles.radioStationList}>
                                         <Text style={styles.radioStationName} numberOfLines={1}>
                                             {radioStation.name}
-                                            {' '}
-FM
                                         </Text>
                                         <Text style={styles.radioStationFrequency} numberOfLines={1}>
-
                                             {radioStation.votes}
 ,
                                             {' '}
@@ -113,6 +110,21 @@ FM
                 ) : (
                     null
                 )}
+                {radioStationActive ? (
+                    <Video
+                        source={{ uri: selectedRadioStation[0].url }} // Can be a URL or a local file.
+                        ref={(ref) => {
+                            this.player = ref;
+                        }} // Store reference
+                        audioOnly
+                        onBuffer={this.onBuffer} // Callback when remote video is buffering
+                        onError={this.videoError} // Callback when video cannot be loaded
+                        style={styles.backgroundVideo}
+                    />
+                ) : (
+                    null
+                )}
+
             </View>
         );
     }
