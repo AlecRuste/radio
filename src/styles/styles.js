@@ -6,6 +6,9 @@ export default StyleSheet.create({
         backgroundColor: '#2f2f3a'
     },
     radioStationList: {
+        marginBottom: '20%'
+    },
+    radioStationListItem: {
         flexDirection: 'row',
         justifyContent: 'space-between'
     },

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView, Button } from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import Video from 'react-native-video';
 import styles from './src/styles';
 import Header from './src/components/Header';
@@ -54,11 +54,11 @@ export default class App extends Component {
             <View style={styles.main}>
                 <Header />
                 {!isLoading ? (
-                    <ScrollView>
+                    <ScrollView style={[radioStationActive ? styles.radioStationList : null]}>
                         {radioStationList.map(radioStation => (
                             <View key={radioStation.id}>
                                 <TouchableOpacity onPress={() => this.handleRadioStation(radioStation)}>
-                                    <View style={styles.radioStationList}>
+                                    <View style={styles.radioStationListItem}>
                                         <Text style={styles.radioStationName} numberOfLines={1}>
                                             {radioStation.name}
                                         </Text>
@@ -99,7 +99,6 @@ export default class App extends Component {
                                 ) : (
                                     null
                                 )}
-
                             </View>
                         ))}
                     </ScrollView>
