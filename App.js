@@ -112,13 +112,13 @@ export default class App extends Component {
                 )}
                 {radioStationActive ? (
                     <Video
-                        source={{ uri: selectedRadioStation[0].url }} // Can be a URL or a local file.
+                        source={{ uri: selectedRadioStation[0].url }}
                         ref={(ref) => {
                             this.player = ref;
-                        }} // Store reference
+                        }}
                         audioOnly
-                        onBuffer={this.onBuffer} // Callback when remote video is buffering
-                        onError={this.videoError} // Callback when video cannot be loaded
+                        onBuffer={this.onBuffer}
+                        onError={this.videoError}
                         style={styles.backgroundVideo}
                     />
                 ) : (
