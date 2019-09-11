@@ -8,7 +8,6 @@ export default StyleSheet.create({
     radioStationList: {
         flexDirection: 'row',
         justifyContent: 'space-between'
-
     },
     radioStationName: {
         fontSize: 24,
