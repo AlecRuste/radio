@@ -20,7 +20,7 @@ export default class App extends Component {
 
     async getMovies() {
         try {
-            const radioStationData = await fetch('http://www.radio-browser.info/webservice/json/stations/bycountryexact/lithuania?limit=15');
+            const radioStationData = await fetch('http://www.radio-browser.info/webservice/json/stations/bycountryexact/lithuania');
             const responseRadioStationList = await radioStationData.json();
             this.setState({
                 radioStationList: responseRadioStationList,
@@ -32,16 +32,18 @@ export default class App extends Component {
     }
 
     handleRadioStation = (item) => {
-        const { radioStationList } = this.state;
+        const { radioStationList, radioStationActive, selectedRadioStation } = this.state;
         const filteredRadioStation = radioStationList.filter(radioStation => radioStation === item);
-        this.setState({
-            radioStationActive: true,
-            selectedRadioStation: filteredRadioStation
-        });
-    }
-
-    playTrack = () => {
-
+        if (radioStationActive && filteredRadioStation[0].id === selectedRadioStation[0].id) {
+            this.setState({
+                radioStationActive: false
+            });
+        } else {
+            this.setState({
+                radioStationActive: true,
+                selectedRadioStation: filteredRadioStation
+            });
+        }
     }
 
     render() {
