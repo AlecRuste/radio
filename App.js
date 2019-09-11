@@ -102,7 +102,6 @@ export default class App extends Component {
 
                             </View>
                         ))}
-
                     </ScrollView>
                 ) : (
                     <Acitvity />
@@ -126,7 +125,6 @@ export default class App extends Component {
                 ) : (
                     null
                 )}
-
             </View>
         );
     }

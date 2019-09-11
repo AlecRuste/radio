@@ -7,7 +7,7 @@ const Footer = props => (
         <Text style={styles.currentlyPlaying}>
 Currently Playing
         </Text>
-        <Text style={styles.stationName}>
+        <Text style={styles.stationName} numberOfLines={1}>
             {props.name}
         </Text>
     </View>
