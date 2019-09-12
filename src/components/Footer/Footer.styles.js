@@ -8,7 +8,9 @@ export default StyleSheet.create({
         height: '10%',
         backgroundColor: '#22222b',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderTopWidth: 1,
+        borderColor: '#a2abbd',
     },
     currentlyPlaying: {
         textTransform: 'uppercase',
@@ -20,4 +22,10 @@ export default StyleSheet.create({
         color: '#a2abbd',
         fontSize: 20
     },
+    seperator: {
+
+        width: '100%',
+
+        bottom: '25%',
+    }
 });

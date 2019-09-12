@@ -48,8 +48,6 @@ export default class App extends Component {
 
     render() {
         const { radioStationList, isLoading, radioStationActive, selectedRadioStation } = this.state;
-        console.log(selectedRadioStation);
-        console.log(radioStationActive);
         return (
             <View style={styles.main}>
                 <Header />
@@ -69,6 +67,7 @@ export default class App extends Component {
                                             {radioStation.votes[0]}
                                         </Text>
                                     </View>
+                                    <View style={styles.seperator} />
                                 </TouchableOpacity>
                                 {radioStationActive && radioStation.id === selectedRadioStation[0].id ? (
                                     <View style={styles.radioStationDetails}>

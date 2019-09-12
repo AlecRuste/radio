@@ -36,5 +36,11 @@ export default StyleSheet.create({
         height: 125,
         borderWidth: 3,
         borderColor: '#a2abbd'
+    },
+    seperator: {
+        borderWidth: 0.5,
+        borderColor: '#a2abbd',
+        margin: 5,
+        opacity: 0.3
     }
 });
