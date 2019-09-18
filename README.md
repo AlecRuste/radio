@@ -1,8 +1,8 @@
-# Radio Template
+# Radio
 
 ## About
 
-Corner Case assignment.
+Simple Radio App
 
 ## Technologies used for this project
 - JS
